@@ -11,15 +11,27 @@ namespace MoviesTest
     {
 
         [Test]
-        public void CheckMovieTitleFilter_ShouldReturnTrue_WhenTitleExists()
+        public async Task CheckMovieTitleFilter_ShouldReturnTrue_WhenTitleExists()
         {
             // Arrange
             var movieService = new MovieService();
             var titleToCheck = "War of the Worlds";
             // Act
-            var result = movieService.CheckMovieTitleFilter(titleToCheck).Result;
+            var result = await movieService.CheckMovieTitleFilterAsync(titleToCheck);
             // Assert
             Assert.IsTrue(result);
+        }
+
+        [Test]
+        public async Task CheckMovieTitleFilter_ShouldReturnFalse_WhenTitleNotExists()
+        {
+            // Arrange
+            var movieService = new MovieService();
+            var titleToCheck = "Non exists";
+            // Act
+            var result = await movieService.CheckMovieTitleFilterAsync(titleToCheck);
+            // Assert
+            Assert.IsFalse(result);
         }
     }
 }

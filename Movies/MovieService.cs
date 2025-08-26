@@ -14,7 +14,7 @@ namespace Movies
             _movieRepository = new MovieRepository();
         }
 
-        public async Task<bool> CheckMovieTitleFilter(string title)
+        public async Task<bool> CheckMovieTitleFilterAsync(string title)
         {
             var allMovies = await _movieRepository.GetAllMoviesAsync();
             var movies = await _movieRepository.GetMoviesByTitleAsync(title);
