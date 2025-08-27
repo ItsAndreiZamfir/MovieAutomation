@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,22 +39,44 @@ namespace MovieAutomation.HelperMethods
             });
         }
 
+        public void WaitElementToBeClickable(IWebElement webElement)
+        {
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(_ =>
+            {
+                try
+                {
+                    return webElement.Enabled && webElement.Displayed;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    return false;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            });
+        }
+
 
         public void ClickElement(IWebElement webElement)
         {
             WaitElementToBeVisible(webElement);
             ScrollToElement(webElement);
+            WaitElementToBeClickable(webElement);
             webElement.Click();
         }
 
-        public void FillElement(WebElement webElement, string keyToSend)
+        public void FillElement(IWebElement webElement, string keyToSend)
         {
             WaitElementToBeVisible(webElement);
             ScrollToElement(webElement);
+            webElement.Clear();
             webElement.SendKeys(keyToSend);
         }
 
-        public void SelectDropdownByText(WebElement webElement, string textToSelect)
+        public void SelectDropdownByText(IWebElement webElement, string textToSelect)
         {
             WaitElementToBeVisible(webElement);
             ScrollToElement(webElement);
@@ -61,7 +84,7 @@ namespace MovieAutomation.HelperMethods
             selectElement.SelectByText(textToSelect);
         }
 
-        public void SelectDropdownByValue(WebElement webElement, string valueToSelect)
+        public void SelectDropdownByValue(IWebElement webElement, string valueToSelect)
         {
             WaitElementToBeVisible(webElement);
             ScrollToElement(webElement);
@@ -69,7 +92,7 @@ namespace MovieAutomation.HelperMethods
             selectElement.SelectByValue(valueToSelect);
         }
 
-        public void SelectDropdownByIndex(WebElement webElement, int index)
+        public void SelectDropdownByIndex(IWebElement webElement, int index)
         {
             WaitElementToBeVisible(webElement);
             ScrollToElement(webElement);
@@ -82,6 +105,5 @@ namespace MovieAutomation.HelperMethods
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
         }
-
     }
 }

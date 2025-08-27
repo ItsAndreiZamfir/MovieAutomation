@@ -28,7 +28,7 @@ namespace MovieAutomation.Features
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Movies", "Tests for the movie db webapp", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Movies", "Tests for the movie db webapp (navigation on movies page and filters)", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
 #line 1 "MovieDB.feature"
 #line hidden
@@ -82,14 +82,16 @@ namespace MovieAutomation.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Use the navigation menu")]
-        [NUnit.Framework.CategoryAttribute("testtag")]
-        public async System.Threading.Tasks.Task UseTheNavigationMenu()
+        [NUnit.Framework.DescriptionAttribute("Navigation to movies page")]
+        [NUnit.Framework.CategoryAttribute("navigation")]
+        [NUnit.Framework.CategoryAttribute("movies")]
+        public async System.Threading.Tasks.Task NavigationToMoviesPage()
         {
             string[] tagsOfScenario = new string[] {
-                    "testtag"};
+                    "navigation",
+                    "movies"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Use the navigation menu", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Navigation to movies page", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -105,6 +107,123 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 8
  await testRunner.ThenAsync("I should be navigated to the \"movie\" page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Filter movies by release date ascending")]
+        [NUnit.Framework.CategoryAttribute("filter")]
+        [NUnit.Framework.CategoryAttribute("movies")]
+        public async System.Threading.Tasks.Task FilterMoviesByReleaseDateAscending()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "filter",
+                    "movies"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Filter movies by release date ascending", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 11
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 12
+ await testRunner.GivenAsync("I navigate to the movies page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 13
+ await testRunner.WhenAsync("I filter movies by \"Release Date Ascending\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 14
+ await testRunner.AndAsync("I press search button", ((string)(null)), ((global::Reqnroll.Table)(null)), "* ");
+#line hidden
+#line 15
+ await testRunner.ThenAsync("the movies should be sorted by release date ascending", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Filter movies by gendres")]
+        [NUnit.Framework.CategoryAttribute("filter")]
+        [NUnit.Framework.CategoryAttribute("movies")]
+        public async System.Threading.Tasks.Task FilterMoviesByGendres()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "filter",
+                    "movies"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Filter movies by gendres", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 18
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 19
+ await testRunner.GivenAsync("I navigate to the movies page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 20
+ await testRunner.WhenAsync("I save the initial list of movies", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 21
+ await testRunner.AndAsync("I select genres filters: \"Action,Fantasy\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "* ");
+#line hidden
+#line 22
+ await testRunner.AndAsync("I press search button", ((string)(null)), ((global::Reqnroll.Table)(null)), "* ");
+#line hidden
+#line 23
+ await testRunner.ThenAsync("the movies list should be different from the initial list of movies", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Filter movies by release dates")]
+        [NUnit.Framework.CategoryAttribute("filter")]
+        [NUnit.Framework.CategoryAttribute("movies")]
+        public async System.Threading.Tasks.Task FilterMoviesByReleaseDates()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "filter",
+                    "movies"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Filter movies by release dates", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 26
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 27
+ await testRunner.GivenAsync("I navigate to the movies page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 28
+ await testRunner.WhenAsync("I save the initial list of movies", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 29
+ await testRunner.AndAsync("I select release dates from \"1990\" to \"2005\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 30
+ await testRunner.AndAsync("I press search button", ((string)(null)), ((global::Reqnroll.Table)(null)), "* ");
+#line hidden
+#line 31
+ await testRunner.ThenAsync("the movies list should contains only movies released between 1990 and 2005", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

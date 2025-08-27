@@ -48,6 +48,8 @@ namespace MovieAutomation
             options.AddArgument("--start-maximized");
             options.AddArgument("--disable-gpu");
             options.AddArgument("--disable-extensions");
+            options.AddUserProfilePreference("profile.default_content_setting_values.cookies", 2);
+            options.AddUserProfilePreference("profile.block_third_party_cookies", true);
 
             _driver = new ChromeDriver(options);
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);

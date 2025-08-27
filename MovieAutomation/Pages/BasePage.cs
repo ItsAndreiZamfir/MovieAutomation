@@ -1,4 +1,5 @@
 ﻿using MovieAutomation.HelperMethods;
+using MovieAutomation.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -13,10 +14,12 @@ namespace MovieAutomation.Pages
     {
         private IWebDriver _driver;
         protected ElementMethods _elementMethods;
+        protected WebDriverWaitHelper _waitHelper;
         public BasePage(IWebDriver driver)
         {
             this._driver = driver;
             _elementMethods = new ElementMethods(driver);
+            _waitHelper = new WebDriverWaitHelper(driver);
         }
 
         public IWebDriver WebDriver
@@ -29,6 +32,12 @@ namespace MovieAutomation.Pages
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutInSeconds));
             wait.Until(drv => ((IJavaScriptExecutor)drv).ExecuteScript("return document.readyState").Equals("complete"));
+        }
+
+        protected void WaitUntilDriverFindElement(By by, int timeoutInSeconds = 10)
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutInSeconds));
+            wait.Until(drv => drv.FindElement(by).Displayed);
         }
 
         public bool IsAtPath(string pathEndsWith) =>

@@ -10,11 +10,8 @@ namespace MovieAutomation.Pages
 {
     public class HomePage : BasePage
     {
-        public MenubarComponent Menubar { get; }
-
         public HomePage(IWebDriver driver) : base(driver)
         {
-            Menubar = new MenubarComponent(driver);
         }
 
         public void NavigateToMoviesPage()
