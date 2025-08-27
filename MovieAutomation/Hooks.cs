@@ -27,7 +27,6 @@ namespace MovieAutomation
         {
             _driver = CreateDriver(headless: false);
             _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
-            _objectContainer.RegisterTypeAs<HomePage, HomePage>();
         }
 
         [AfterScenario]
