@@ -210,19 +210,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 27
+#line 28
  await testRunner.GivenAsync("I navigate to the movies page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 28
+#line 29
  await testRunner.WhenAsync("I save the initial list of movies", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 29
+#line 30
  await testRunner.AndAsync("I select release dates from \"1990\" to \"2005\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 30
+#line 31
  await testRunner.AndAsync("I press search button", ((string)(null)), ((global::Reqnroll.Table)(null)), "* ");
 #line hidden
-#line 31
+#line 32
  await testRunner.ThenAsync("the movies list should contains only movies released between 1990 and 2005", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
